@@ -1,0 +1,414 @@
+
+{% extends "base.html" %} {% block content %}
+
+<h2 align="center">Scan Leaf</h2>
+
+<div style="display:flex; align-items:center; flex-direction:column; justify-content:center;">
+    <form id="upload-file" method="post" enctype="multipart/form-data" >
+        <label for="imageUpload" class="upload-label">
+            Choose Image
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" >
+    </form>
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-primary btn-lg" id="btn-predict">Predict!</button>
+        </div>
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        <span> </span>
+    </h3>
+
+</div>
+
+<br>
+<br>
+<h3 align = 'center'>Learn More</h3>
+
+<!-- Bacterial Spot -->
+<a href="#bacterial-spot-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="bacterial-spot-sidebar">
+    Bacterial Spot
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="bacterial-spot-sidebar"
+aria-labelledby="bacterial-spot-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="bacterial-spot-sidebar-label">Bacterial Spot</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Small, water-soaked spots on leaves that enlarge into brown lesions with yellow halos.</li>
+                <li>Lesions may develop a target-like appearance.</li>
+                <li>Spots may also appear on fruit, becoming raised and dark.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Caused by bacteria (Xanthomonas spp.).</li>
+                <li>Spread through water, contaminated tools, or infected plant debris.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply copper-base liquid fungicides, Mancozeb, and chlorothalonil.</li>
+                <li>Copper products or copper plus mancozeb are registered and effective to control bacterial spot of tomato</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Practice drip irrigation.</li>
+                <li>Practice crop rotation.</li>
+                <li>Avoid overhead watering to reduce humidity.</li>
+                <li>Keep garden clean and free of debris.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Early Blight -->
+<a href="#early-blight-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="early-blight-sidebar">
+    Early Blight
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="early-blight-sidebar"
+aria-labelledby="early-blight-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="early-blight-sidebar-label">Early Blight</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Circular lesions with dark margins on lower leaves.</li>
+                <li>Lesions may have concentric rings, resembling a target.</li>
+                <li>Leaves may yellow and die prematurely.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Fungal infection (Alternaria solani).</li>
+                <li>Thrives in warm, humid conditions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply fungicides containing chlorothalonil or copper.</li>
+                <li>Custodia Fungicide- Azoxystrobin 11% + Tebuconazole 18.3% SC</li>
+                <li>Conika Fungicide- Kasugamycin 5% + Copper Oxychloride 45% WP</li>
+                <li>Kocide Fungicide- Copper Hydroxide 53.8% DF</li>
+                <li>Dhanuka M45 Fungicide- Mancozeb 75% WP</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Rotate crops to prevent buildup of fungal spores.</li>
+                <li>Mulch around plants to reduce soil splashing.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Late Blight -->
+<a href="#late-blight-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="late-blight-sidebar">
+    Late Blight
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="late-blight-sidebar"
+aria-labelledby="late-blight-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="late-blight-sidebar-label">Late Blight</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Water-soaked lesions on leaves, usually starting at leaf edges.</li>
+                <li>Lesions turn dark brown or black and become necrotic.</li>
+                <li>White mold may appear on the underside of leaves in humid conditions.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Fungal infection (Phytophthora infestans).</li>
+                <li>Thrives in cool, moist weather.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply fungicides containing copper or chlorothalonil.</li>
+                <li>Bravo (chlorothalonil) and Dithane (mancozeb) are contact fungicides that need to be sprayed.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Space plants adequately for good air circulation.</li>
+                <li>Avoid watering foliage, water at soil level.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Leaf Mold -->
+<a href="#leaf-mold-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="leaf-mold-sidebar">
+    Leaf Mold
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="leaf-mold-sidebar"
+aria-labelledby="leaf-mold-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="leaf-mold-sidebar-label">Leaf Mold</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Yellowish patches on leaves that become pale or grayish.</li>
+                <li>Fuzzy white or gray mold growth on the underside of leaves.</li>
+                <li>Leaves may curl or distort.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Fungal infection (Fulvia fulva).</li>
+                <li>Thrives in warm, humid conditions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply copper-based fungicides preventively.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Provide good air circulation by spacing plants appropriately.</li>
+                <li>Avoid overhead watering.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Septoria Leaf Spot -->
+<a href="#septoria-leaf-spot-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="septoria-leaf-spot-sidebar">
+    Septoria Leaf Spot
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="septoria-leaf-spot-sidebar"
+aria-labelledby="septoria-leaf-spot-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="septoria-leaf-spot-sidebar-label">Septoria Leaf Spot</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Small, circular spots with dark margins on leaves.</li>
+                <li>Spots may have tiny black fruiting bodies in the center.</li>
+                <li>Leaves may yellow and drop prematurely.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Fungal infection (Septoria lycopersici).</li>
+                <li>Thrives in warm, humid conditions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply fungicides containing copper or chlorothalonil.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Water at the base of plants to avoid wetting foliage.</li>
+                <li>Mulch around plants to reduce soil splashing.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Two-Spotted Spider Mites -->
+<a href="#spider-mites-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="spider-mites-sidebar">
+    Two-Spotted Spider Mites
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="spider-mites-sidebar"
+aria-labelledby="spider-mites-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="spider-mites-sidebar-label">Two-Spotted Spider Mites</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Fine webbing on leaves and between stems.</li>
+                <li>Yellow stippling on leaves.</li>
+                <li>Leaves may appear dusty.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Infestation by spider mites (Tetranychus spp.).</li>
+                <li>Thrives in hot, dry conditions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Spray plants with water to dislodge mites.</li>
+                <li>Apply insecticidal soap or neem oil.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Increase humidity by misting plants regularly.</li>
+                <li>Introduce natural predators like ladybugs.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Target Spot -->
+<a href="#target-spot-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="target-spot-sidebar">
+    Target Spot
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="target-spot-sidebar"
+aria-labelledby="target-spot-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="target-spot-sidebar-label">Target Spot</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Circular lesions with concentric rings on leaves.</li>
+                <li>Lesions may have a bullseye appearance.</li>
+                <li>Leaves may yellow and drop prematurely.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Fungal infection (Corynespora cassiicola).</li>
+                <li>Thrives in warm, humid conditions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>Remove and destroy infected plant material.</li>
+                <li>Apply fungicides containing chlorothalonil or copper.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Avoid overhead watering to reduce humidity.</li>
+                <li>Space plants properly for good air circulation.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Tomato Yellow Leaf Curl Virus -->
+<a href="#tomato-yellow-leaf-curl-virus-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="tomato-yellow-leaf-curl-virus-sidebar">
+    Tomato Yellow Leaf Curl Virus
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="tomato-yellow-leaf-curl-virus-sidebar"
+aria-labelledby="tomato-yellow-leaf-curl-virus-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="tomato-yellow-leaf-curl-virus-sidebar-label">Tomato Yellow Leaf Curl Virus</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Yellowing and upward curling of leaves.</li>
+                <li>Leaf thickening and reduced size.</li>
+                <li>Stunted growth and reduced fruit production.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Viral infection transmitted by whiteflies.</li>
+                <li>Thrives in warm, tropical regions.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>There is no cure for the virus.</li>
+                <li>Remove and destroy infected plants to prevent spread.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Control whitefly populations with insecticidal soap or neem oil.</li>
+                <li>Use reflective mulch to deter whiteflies.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Tomato Mosaic Virus -->
+<a href="#tomato-mosaic-virus-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="tomato-mosaic-virus-sidebar">
+    Tomato Mosaic Virus
+</a>
+
+<! -- offcanvas -- >
+<div class="offcanvas offcanvas-start" tabindex="-1" id="tomato-mosaic-virus-sidebar"
+aria-labelledby="tomato-mosaic-virus-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="tomato-mosaic-virus-sidebar-label">Tomato Mosaic Virus</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Symptoms:</h4>
+            <ul>
+                <li>Mottled yellow-green patterns on leaves.</li>
+                <li>Stunted growth and reduced yield.</li>
+                <li>Fruits may have dark, sunken areas.</li>
+            </ul>
+            <h4>Causes:</h4>
+            <ul>
+                <li>Viral infection transmitted through contact with infected plants or soil.</li>
+                <li>Can also be transmitted by infected tools or hands.</li>
+            </ul>
+            <h4>Cure/Treatment:</h4>
+            <ul>
+                <li>There is no cure for the virus.</li>
+                <li>Remove and destroy infected plants.</li>
+            </ul>
+            <h4>Precautions:</h4>
+            <ul>
+                <li>Practice strict hygiene to avoid spreading the virus.</li>
+                <li>Control aphid populations, which can transmit the virus.</li>
+            </ul>
+    </div>
+</div>
+
+<!-- Healthy Tomato Leaf Button -->
+<a href="#healthy-tomato-leaf-sidebar" class="btn btn-success d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="healthy-tomato-leaf-sidebar">
+    Healthy Tomato Leaf
+</a>
+
+<!-- Offcanvas Sidebar for Healthy Tomato Leaf -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="healthy-tomato-leaf-sidebar" aria-labelledby="healthy-tomato-leaf-sidebar-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="healthy-tomato-leaf-sidebar-label">Healthy Tomato Leaf</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h4>Description:</h4>
+        <p>A healthy tomato leaf is typically green in color, with no signs of discoloration, spots, or abnormalities.</p>
+        <h4>Features:</h4>
+        <ul>
+            <li>Uniform green color</li>
+            <li>No spots or discoloration</li>
+            <li>No signs of disease or pest damage</li>
+            <li>Firm and turgid texture</li>
+        </ul>
+        <h4>Maintenance:</h4>
+        <p>To maintain healthy tomato leaves, ensure adequate watering, proper nutrition, and regular inspection for signs of disease or pest infestation.</p>
+        <h4>Disease Prevention:</h4>
+        <ul>
+            <li>Practice crop rotation to prevent the buildup of soil-borne pathogens.</li>
+            <li>Provide good air circulation by spacing plants appropriately.</li>
+            <li>Avoid overhead watering to reduce humidity and minimize the risk of fungal diseases.</li>
+            <li>Inspect plants regularly for early signs of disease and promptly remove any infected foliage.</li>
+            <li>Use disease-resistant tomato varieties whenever possible.</li>
+        </ul>
+    </div>
+</div>
+<br>
+<br>
+
+
+{% endblock %}
